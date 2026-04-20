@@ -44,7 +44,7 @@ export default function App() {
   // Iterator for current products
   const iterator = useMemo(() => new ProductIterator(products), [products]);
 
-  const handleOptimize = () => {
+  const handleOptimize = (shouldNavigate = false) => {
     setIsOptimizing(true);
     // Simulate some "computation"
     setTimeout(() => {
@@ -57,8 +57,8 @@ export default function App() {
       const optimizationResult = aggregator.optimize();
       setResult(optimizationResult);
       setIsOptimizing(false);
-      // Automatically move to results step on mobile if optimizing from step 1 or 3
-      if (window.innerWidth < 1024) {
+      // Automatically move to results step on mobile only if explicitly requested (e.g. from the main button)
+      if (shouldNavigate && window.innerWidth < 1024) {
         setCurrentStep(2);
       }
     }, 800);
@@ -72,7 +72,7 @@ export default function App() {
 
   // Initial optimization
   useEffect(() => {
-    handleOptimize();
+    handleOptimize(false);
   }, [selectedProductIds, shippingMethod]); // Re-run when inputs change
 
   return (
@@ -294,7 +294,7 @@ export default function App() {
             </div>
             
             <button 
-              onClick={handleOptimize}
+              onClick={() => handleOptimize(true)}
               disabled={isOptimizing}
               className="bg-logulia-blue text-white font-bold py-3 px-4 rounded-lg uppercase text-[12px] hover:bg-logulia-blue/90 transition-all flex items-center justify-center gap-2"
             >
@@ -346,7 +346,7 @@ export default function App() {
           onClick={() => {
             setDistance(60);
             setResult(null);
-            setTimeout(() => handleOptimize(), 100);
+            setTimeout(() => handleOptimize(true), 100);
           }}
           className="bg-logulia-blue text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all group"
           title="Reiniciar Simulación"
