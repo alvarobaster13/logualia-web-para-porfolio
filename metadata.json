@@ -1,0 +1,6 @@
+{
+  "name": "LOGULIA Logistics Optimizer",
+  "description": "Smart shipment grouping tool using Iterator and Aggregator patterns to minimize delivery costs and respect weight limits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

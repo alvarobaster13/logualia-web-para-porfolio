@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Helvetica Neue', Arial, sans-serif;
+  
+  --color-logulia-blue: #0058AB;
+  --color-logulia-yellow: #FFDA1A;
+  --color-bg-warm: #F5F5F0;
+  --color-card-bg: #FFFFFF;
+  --color-text-dark: #333333;
+  --color-text-muted: #666666;
+  --color-border-warm: #E5E5E0;
+}
+
+body {
+  background-color: var(--color-bg-warm);
+  color: var(--color-text-dark);
+}
